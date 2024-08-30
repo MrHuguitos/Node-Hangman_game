@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary: #000000;
+    --background: #FAFAFA;
+    --secondary-background: #F2F2F2;
+    --gray: #847F90;
+    --gray-hover: #171717;
+    --primary-hover: #555555;
+    --link-gray: #666666;
+    --link-gray-hover: #171717;
+    --gray: #E1E1E1;
+    --gray-border: #E6E6E6;
+    --white: #FCFCFC;
+    --navbar-height: 64px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Barra  */
+.menu__wrapper {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    width: 100vw;
+    z-index: 2;
+    gap: 1.5rem;
+    background: var(--background);
+    height: var(--navbar-height);
+    padding: 0px 1rem;
+    align-items: center;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.menu__bar {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo svg {
+    fill: var(--primary);
+}
+
+.hide {
+    color: var(--primary);
+    font-size: 70px;
+    font-family: "Sedan SC", serif;
+}
+
+/* Body */
+.corpo {
+    position: absolute;
+    top: calc(var(--navbar-height) + 1%); /* Coloca a div abaixo do menu dropdown */
+    left: 0;
+    width: 100%; /* Faz com que a div ocupe toda a largura */
+    background-color: #cfcfcf; /* Cor de fundo da div */
+    padding: 20px; /* Espaçamento interno */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura da div */
+    z-index: 1; /* Ajusta o z-index para que fique abaixo da dropdown__wrapper */
+}
+
+.img {
+    display: ruby-text;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+.lista {
+    display: ruby-text;
+    font-family: "Sedan SC", serif;
+    font-size: xx-large;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    font-family: "Poppins", sans-serif;
+}
+
+input {
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 40px;
+    font-size: xx-large;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+button {
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 50px;
+    color: #22ce00;
+    background: #ffffff;
+    border: 2px solid #ddddda;
+    transition: .4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #22ce00;
+    color: #fff;
+    border-color: #22ce00;
+}
+
+/* Dialog's */
+dialog {
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    border: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} 
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.botao {
+    margin-top: 60px;
+    width: 200px;
+    margin-left: 22%;
+    height: 35px;
+    font-family: "Poppins", sans-serif;
+}
+
+.titulo {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
