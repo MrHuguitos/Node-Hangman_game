@@ -1,2 +1,2 @@
 # Hangman-game-Flask
-Jogo da forca desenvolvido em Python, HTML, CSS e JavaScript
+Jogo da forca desenvolvido com Python, HTML, CSS e JavaScript
