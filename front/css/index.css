@@ -75,7 +75,8 @@ body {
 }
 
 .img {
-    display: ruby-text;
+    display: flex;
+    justify-content: center;
 }
 
 img {
@@ -84,9 +85,15 @@ img {
 }
 
 .lista {
-    display: ruby-text;
+    display: flex;
+    justify-content: center;
     font-family: "Sedan SC", serif;
     font-size: xx-large;
+}
+
+.lista h2 {
+    display: flex;
+    gap: 10px; 
 }
 
 .inputs {

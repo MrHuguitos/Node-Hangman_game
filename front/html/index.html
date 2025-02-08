@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início</title>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+</head>
+<body>
+    <header class="menu__wrapper">
+        <div class="menu__bar">
+            <a href="#" title="Home" aria-label="home" class="logo" onclick="window.location.reload(true);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                    <path d="M6 3h2v2H6zm2 16h3v2H8zm8-16h2v2h-2zm-3 16h3v2h-3zm7-8V9h-2V7h-2V5h-2v2h-4V5H8v2H6v2H4v2H2v8h2v-4h2v4h2v-3h8v3h2v-4h2v4h2v-8zm-10 1H8V9h2zm6 0h-2V9h2z"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+    <div class="corpo">
+        <div class="game">
+            <div class="img">
+                <img src="img\forca0.png" alt="forca" id="imagemForca">
+            </div>
+            <div class="info">
+                <div class="lista">
+                    <h2>
+                        <span id="{{ letra }}">_</span>
+                    </h2>
+                </div>
+                <div class="inputs">
+                    <label>Digite uma letra:</label>
+                    <input type="text" maxlength="1" name="texto" id="texto" oninput="validar(this)" required>
+                    <button type="button" name="enviar" id="enviar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <dialog id="derrota">
+            <h2 class="titulo">Você Perdeu!</h2>
+            <button class="botao" onclick="window.location.reload();">Tentar Novamente</button>
+        </dialog>
+        <dialog id="vitoria">
+            <h2 class="titulo">Você Venceu!</h2>
+        </dialog>
+    </div>
+    <script>
+        function validar(input) {
+            const regex = /^[a-zA-Z]*$/;
+            if (!regex.test(input.value)) {
+                input.value = input.value.replace(/[^a-zA-Z]/g, ''); 
+            };
+        };
+
+        var listar_letras = [];
+        var letras_usadas = [];
+        var acertos = 0;
+        var erros = 0;
+        var word = "";
+
+        async function LoadWord() {
+            try {
+                const response = await fetch("http://127.0.0.1:3000/jogar");
+                const wordRandom = await response.json();
+                word = wordRandom.name;
+                listar_letras = word.split('');
+            } catch(error) {
+                console.error("Erro ao carregar palavra: ", error);
+            };
+        };
+
+        // Espera a palavra ser carregada antes de permitir jogar
+        LoadWord().then(() => {
+            document.querySelector(".lista h2").innerHTML = listar_letras.map((_, i) => `<span id="${i}">_</span>`).join('');
+
+            const botaoJogar = document.getElementById("enviar");
+
+            botaoJogar.addEventListener("click", function () {
+                if (erros < 6) {
+                    var letra = document.getElementById('texto').value.toLowerCase(); // Torna a letra minúscula
+
+                    if (letras_usadas.includes(letra)) {
+                        console.log("Essa letra já foi usada!"); // input dentro da lista 'letras_usadas'
+                    } else {
+                        letras_usadas.push(letra); // Adiciona a letra na lista de usadas
+                        var posicoes = [];
+
+                        listar_letras.forEach((item, index) => {
+                            if (item === letra) {
+                                posicoes.push(index);
+                            }
+                        }); // Percorre todos os itens de 'listar_letras' e, se o item for igual ao input, seu index vai para a lista posicoes
+
+                        if (posicoes.length > 0) {
+                            posicoes.forEach(posicao => {
+                                document.getElementById(posicao).textContent = letra;
+                            }); // percorre a lista 'posicoes' e, se o seu valor for igual ao ID do elemento '_', substitui o elemento pelo input
+                            acertos += posicoes.length; // Adiciona pontos iguais ao número de acertos na variavel acertos
+                            if (acertos === listar_letras.length) { 
+                                document.querySelector("#vitoria").showModal();
+                            }
+                        } else {
+                            erros++;
+                            document.getElementById('imagemForca').src = `img/forca${erros}.png`;
+                            if (erros >= 6) {
+                                document.querySelector("#derrota").showModal();
+                            }
+                        } // Caso o input não esteja correto, 1 ponto será adicionado na variavel de erros 
+                    }
+                    document.getElementById('texto').value = ''; 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
