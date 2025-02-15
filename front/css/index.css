@@ -68,20 +68,30 @@ body {
     top: calc(var(--navbar-height) + 1%); /* Coloca a div abaixo do menu dropdown */
     left: 0;
     width: 100%; /* Faz com que a div ocupe toda a largura */
-    background-color: #cfcfcf; /* Cor de fundo da div */
+    background-color: #c4c4c4; /* Cor de fundo da div */
     padding: 20px; /* Espaçamento interno */
     box-sizing: border-box; /* Garante que o padding não aumente a largura da div */
     z-index: 1; /* Ajusta o z-index para que fique abaixo da dropdown__wrapper */
 }
 
 .img {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 img {
     width: 300px;
     height: 300px;
+}
+
+.info2 {
+    display: flex;
+    position: relative;
+}
+
+.info {
+    margin-top: 300px;
 }
 
 .lista {
@@ -164,4 +174,37 @@ dialog::backdrop {
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
+}
+
+.letras_inputs {
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+    position: absolute;
+    left: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.letras_inputs h3{
+    text-align: center;
+}
+
+#letrasUsadasContainer {
+    display: flex;  /* Ou display: grid */
+    gap: 10px; /* Ajuste o valor do espaço entre as letras */
+    margin-left: 10px;
+    flex-wrap: wrap; /* Para quebrar linha se necessário */
+    font-size: 30px;
+    max-width: 170px;
+}
+
+.letra-usada-verde {
+    color: rgb(34, 253, 34);
+    font-weight: bold;
+}
+
+.letra-usada-vermelha {
+    color: rgb(255, 30, 30);
+    font-weight: bold;
 }
