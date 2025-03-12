@@ -3,7 +3,7 @@ function validar(input) {
     if (!regex.test(input.value)) {
         input.value = input.value.replace(/[^a-zA-Z]/g, ''); 
     };
-}; // Não permite que o user digite números ou caracteres especiais
+}; // Função para negar o uso de números ou caracteres especiais
 
 var listar_letras = [];
 var letras_usadas = [];
@@ -20,20 +20,21 @@ async function LoadWord() {
     } catch(error) {
         console.error("Erro ao carregar palavra: ", error);
     };
-};
+}; // Função para pegar uma palavra aleatoria no db
 
 LoadWord().then(() => {  // Espera a palavra ser carregada antes de permitir jogar
     document.querySelector(".lista h2").innerHTML = listar_letras.map((_, i) => `<span id="${i}">_</span>`).join(''); // Para cada item no array listar_letras, cria uma string de HTML no formato <span id="i">_</span>, onde i é o índice. Então, .join('') junta todos os elementos em uma única string sem separadores e a define como conteúdo HTML do <h2>
 
-    const botaoJogar = document.getElementById("enviar");
+    const button = document.getElementById("enviar"); // Botão de enviar letra
+    const inputText = document.getElementById("texto"); // Letra enviada
 
-    botaoJogar.addEventListener("click", function () { // Função acionada ao clicar em botaojogar
+    function jogar() {
         if (erros < 6) {
-            var letra = document.getElementById('texto').value.toLowerCase(); // Torna a letra minúscula
+            var letra = inputText.value.trim().toLowerCase(); // Torna a letra minúscula e remove qualquer espaço antes ou depois dela
 
             if (letra.length !== 1) {
                 alert("Digite apenas uma letra válida!");
-                inputTexto.value = "";
+                inputText.value = "";
                 return;
             } // Não permite que o user invie o campo vazio ou com espeço
 
@@ -42,8 +43,8 @@ LoadWord().then(() => {  // Espera a palavra ser carregada antes de permitir jog
             } else {
                 letras_usadas.push(letra); // Adiciona a letra na lista de usadas
                 const letrasUsadasContainer = document.getElementById("letrasUsadasContainer");
-                const spanLetra = document.createElement("span");
-                spanLetra.textContent = letra.toUpperCase();                            
+                const spanLetra = document.createElement("span"); // Cria um elemento span
+                spanLetra.textContent = letra.toUpperCase();                        
                 
                 var posicoes = [];
 
@@ -74,6 +75,13 @@ LoadWord().then(() => {  // Espera a palavra ser carregada antes de permitir jog
                 letrasUsadasContainer.appendChild(spanLetra);
             }
             document.getElementById('texto').value = ''; 
-        }
+        };
+    };
+    button.addEventListener("click", jogar); // Clicar no botão ativa a função
+    inputText.addEventListener("keydown", function(event) { // Clicar na tecla enter também ativa a função
+        if (event.key === "Enter") {
+            event.preventDefault();
+            jogar();
+        };
     });
 });
