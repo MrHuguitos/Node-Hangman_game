@@ -10,7 +10,7 @@
 <body>
     <header class="menu__wrapper">
         <div class="menu__bar">
-            <a href="#" title="Home" aria-label="home" class="logo" onclick="window.location.reload(true);">
+            <a href="http://127.0.0.1:3000/" title="Home" aria-label="home" class="logo" onclick="window.location.reload(true);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                     <path d="M6 3h2v2H6zm2 16h3v2H8zm8-16h2v2h-2zm-3 16h3v2h-3zm7-8V9h-2V7h-2V5h-2v2h-4V5H8v2H6v2H4v2H2v8h2v-4h2v4h2v-3h8v3h2v-4h2v4h2v-8zm-10 1H8V9h2zm6 0h-2V9h2z"></path>
                 </svg>
@@ -19,38 +19,51 @@
     </header>
     <div class="corpo">
         <div class="game">
-            <div class="info2">
-                <div class="letras_inputs">
-                    <h3>Letras Usadas:</h3>
-                    <div id="letrasUsadasContainer"></div>
-                </div>
+            <div class="img_config">
                 <div class="img">
                     <img src="img\forca0.png" alt="forca" id="imagemForca">
                 </div>
             </div>
             <div class="info">
                 <div class="lista">
-                    <h2>
-                        <span id="{{ letra }}">_</span>
-                    </h2>
+                    <h2></h2>
                 </div>
                 <div class="inputs">
                     <label>Digite uma letra:</label>
-                    <input type="text" maxlength="1" name="texto" id="texto" oninput="validar(this)" required>
+                    <input type="text" maxlength="1" name="texto" id="texto" oninput="validar(this)" required minlength="1">
                     <button type="button" name="enviar" id="enviar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
-                            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+                            <path d="m21.426 11.095-17-8A.999.999 0 0 0 3.03 4.242L4.969 12 3.03 19.758a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81zM5.481 18.197l.839-3.357L12 12 6.32 9.16l-.839-3.357L18.651 12l-13.17 6.197z"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
+        <div class="letras_usadas">
+            <div class="letras_inputs">
+                <h3>Letras Usadas:</h3>
+                <div id="letrasUsadasContainer"></div>
+            </div>
+        </div>
         <dialog id="derrota">
             <h2 class="titulo">Você Perdeu!</h2>
-            <button class="botao" onclick="window.location.reload();">Tentar Novamente</button>
+            <div class="dialog-content">
+                <button class="botao" onclick="window.location.reload();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                        <path d="M19.89 10.105a8.696 8.696 0 0 0-.789-1.456l-1.658 1.119a6.606 6.606 0 0 1 .987 2.345 6.659 6.659 0 0 1 0 2.648 6.495 6.495 0 0 1-.384 1.231 6.404 6.404 0 0 1-.603 1.112 6.654 6.654 0 0 1-1.776 1.775 6.606 6.606 0 0 1-2.343.987 6.734 6.734 0 0 1-2.646 0 6.55 6.55 0 0 1-3.317-1.788 6.605 6.605 0 0 1-1.408-2.088 6.613 6.613 0 0 1-.382-1.23 6.627 6.627 0 0 1 .382-3.877A6.551 6.551 0 0 1 7.36 8.797 6.628 6.628 0 0 1 9.446 7.39c.395-.167.81-.296 1.23-.382.107-.022.216-.032.324-.049V10l5-4-5-4v2.938a8.805 8.805 0 0 0-.725.111 8.512 8.512 0 0 0-3.063 1.29A8.566 8.566 0 0 0 4.11 16.77a8.535 8.535 0 0 0 1.835 2.724 8.614 8.614 0 0 0 2.721 1.833 8.55 8.55 0 0 0 5.061.499 8.576 8.576 0 0 0 6.162-5.056c.22-.52.389-1.061.5-1.608a8.643 8.643 0 0 0 0-3.45 8.684 8.684 0 0 0-.499-1.607z"></path>
+                    </svg>
+                </button>
+            </div>
         </dialog>
         <dialog id="vitoria">
             <h2 class="titulo">Você Venceu!</h2>
+            <div class="dialog-content">
+                <button class="botao" onclick="window.location.reload();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                        <path d="M19.89 10.105a8.696 8.696 0 0 0-.789-1.456l-1.658 1.119a6.606 6.606 0 0 1 .987 2.345 6.659 6.659 0 0 1 0 2.648 6.495 6.495 0 0 1-.384 1.231 6.404 6.404 0 0 1-.603 1.112 6.654 6.654 0 0 1-1.776 1.775 6.606 6.606 0 0 1-2.343.987 6.734 6.734 0 0 1-2.646 0 6.55 6.55 0 0 1-3.317-1.788 6.605 6.605 0 0 1-1.408-2.088 6.613 6.613 0 0 1-.382-1.23 6.627 6.627 0 0 1 .382-3.877A6.551 6.551 0 0 1 7.36 8.797 6.628 6.628 0 0 1 9.446 7.39c.395-.167.81-.296 1.23-.382.107-.022.216-.032.324-.049V10l5-4-5-4v2.938a8.805 8.805 0 0 0-.725.111 8.512 8.512 0 0 0-3.063 1.29A8.566 8.566 0 0 0 4.11 16.77a8.535 8.535 0 0 0 1.835 2.724 8.614 8.614 0 0 0 2.721 1.833 8.55 8.55 0 0 0 5.061.499 8.576 8.576 0 0 0 6.162-5.056c.22-.52.389-1.061.5-1.608a8.643 8.643 0 0 0 0-3.45 8.684 8.684 0 0 0-.499-1.607z"></path>
+                    </svg>
+                </button>
+            </div>
         </dialog>
     </div>
 </body>

@@ -4,15 +4,6 @@
 :root {
     --primary: #000000;
     --background: #FAFAFA;
-    --secondary-background: #F2F2F2;
-    --gray: #847F90;
-    --gray-hover: #171717;
-    --primary-hover: #555555;
-    --link-gray: #666666;
-    --link-gray-hover: #171717;
-    --gray: #E1E1E1;
-    --gray-border: #E6E6E6;
-    --white: #FCFCFC;
     --navbar-height: 64px;
 }
 
@@ -67,11 +58,14 @@ body {
     position: absolute;
     top: calc(var(--navbar-height) + 1%); /* Coloca a div abaixo do menu dropdown */
     left: 0;
-    width: 100%; /* Faz com que a div ocupe toda a largura */
-    background-color: #c4c4c4; /* Cor de fundo da div */
-    padding: 20px; /* Espaçamento interno */
-    box-sizing: border-box; /* Garante que o padding não aumente a largura da div */
+    width: 100%;  
+    box-sizing: border-box; 
     z-index: 1; /* Ajusta o z-index para que fique abaixo da dropdown__wrapper */
+}
+
+.game {
+    background-color: #c4c4c4; 
+    padding: 20px;
 }
 
 .img {
@@ -85,7 +79,7 @@ img {
     height: 300px;
 }
 
-.info2 {
+.img_config {
     display: flex;
     position: relative;
 }
@@ -126,22 +120,54 @@ input {
     text-transform: uppercase;
 }
 
+.letras_usadas {
+    margin-top: 10px;
+}
+
+.letras_inputs {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.letras_inputs h3{
+    text-align: center;
+}
+
+#letrasUsadasContainer {
+    display: flex;  /* Ou display: grid */
+    gap: 10px; /* Ajuste o valor do espaço entre as letras */
+    flex-wrap: wrap; /* Para quebrar linha se necessário */
+    font-size: 30px;
+    justify-content: center;
+}
+
+.letra-usada-verde {
+    color: rgb(34, 253, 34);
+    font-weight: bold;
+}
+
+.letra-usada-vermelha {
+    color: rgb(255, 30, 30);
+    font-weight: bold;
+}
+
 button {
-    margin-top: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 15px;
     border-radius: 5px;
     border: none;
     width: 50px;
-    color: #22ce00;
+    height: 30px;
     background: #ffffff;
-    border: 2px solid #ddddda;
     transition: .4s;
     cursor: pointer;
 }
 
 button:hover {
-    background: #22ce00;
+    background: #4bff27;
     color: #fff;
-    border-color: #22ce00;
 }
 
 /* Dialog's */
@@ -158,53 +184,30 @@ dialog {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 } 
 
+.dialog-content{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
 .botao {
-    margin-top: 60px;
-    width: 200px;
-    margin-left: 22%;
-    height: 35px;
-    font-family: "Poppins", sans-serif;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.botao:hover {
+    background: #fff;
+    color: #fff;
 }
 
 .titulo {
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-}
-
-.letras_inputs {
-    text-align: left;
-    font-family: "Poppins", sans-serif;
-    position: absolute;
-    left: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.letras_inputs h3{
-    text-align: center;
-}
-
-#letrasUsadasContainer {
-    display: flex;  /* Ou display: grid */
-    gap: 10px; /* Ajuste o valor do espaço entre as letras */
-    margin-left: 10px;
-    flex-wrap: wrap; /* Para quebrar linha se necessário */
-    font-size: 30px;
-    max-width: 170px;
-}
-
-.letra-usada-verde {
-    color: rgb(34, 253, 34);
-    font-weight: bold;
-}
-
-.letra-usada-vermelha {
-    color: rgb(255, 30, 30);
-    font-weight: bold;
 }

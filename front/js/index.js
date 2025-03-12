@@ -3,7 +3,7 @@ function validar(input) {
     if (!regex.test(input.value)) {
         input.value = input.value.replace(/[^a-zA-Z]/g, ''); 
     };
-};
+}; // Não permite que o user digite números ou caracteres especiais
 
 var listar_letras = [];
 var letras_usadas = [];
@@ -13,28 +13,34 @@ var word = "";
 
 async function LoadWord() {
     try {
-        const response = await fetch("http://127.0.0.1:3000/jogar");
-        const wordRandom = await response.json();
-        word = wordRandom.name;
-        listar_letras = word.split('');
+        const resposta = await fetch("http://127.0.0.1:3000/jogar"); // Acessar a rota
+        const wordRandom = await resposta.json(); // Acessar a resposta da rota no formato json
+        word = wordRandom.name; // Atribuir o nome da palavra à variavél word
+        listar_letras = word.split(''); // Transdormar a variavél numa lista de letras
     } catch(error) {
         console.error("Erro ao carregar palavra: ", error);
     };
 };
 
 LoadWord().then(() => {  // Espera a palavra ser carregada antes de permitir jogar
-    document.querySelector(".lista h2").innerHTML = listar_letras.map((_, i) => `<span id="${i}">_</span>`).join('');
+    document.querySelector(".lista h2").innerHTML = listar_letras.map((_, i) => `<span id="${i}">_</span>`).join(''); // Para cada item no array listar_letras, cria uma string de HTML no formato <span id="i">_</span>, onde i é o índice. Então, .join('') junta todos os elementos em uma única string sem separadores e a define como conteúdo HTML do <h2>
 
     const botaoJogar = document.getElementById("enviar");
 
-    botaoJogar.addEventListener("click", function () {
+    botaoJogar.addEventListener("click", function () { // Função acionada ao clicar em botaojogar
         if (erros < 6) {
             var letra = document.getElementById('texto').value.toLowerCase(); // Torna a letra minúscula
 
+            if (letra.length !== 1) {
+                alert("Digite apenas uma letra válida!");
+                inputTexto.value = "";
+                return;
+            } // Não permite que o user invie o campo vazio ou com espeço
+
             if (letras_usadas.includes(letra)) {
-                console.log("Essa letra já foi usada!"); 
+                alert("Essa letra já foi usada!"); 
             } else {
-                letras_usadas.push(letra);                                                       // Adiciona a letra na lista de usadas
+                letras_usadas.push(letra); // Adiciona a letra na lista de usadas
                 const letrasUsadasContainer = document.getElementById("letrasUsadasContainer");
                 const spanLetra = document.createElement("span");
                 spanLetra.textContent = letra.toUpperCase();                            
@@ -42,28 +48,28 @@ LoadWord().then(() => {  // Espera a palavra ser carregada antes de permitir jog
                 var posicoes = [];
 
                 listar_letras.forEach((item, index) => {
-                    if (item === letra) {
-                        posicoes.push(index);
+                    if (item === letra) { // Se o item da lista for igual à letra digitada
+                        posicoes.push(index); // Adiciona o index do item à lista posicoes
                     }
-                }); // Percorre todos os itens de 'listar_letras' e, se o item for igual ao input, seu index vai para a lista posicoes
+                }); 
 
                 if (posicoes.length > 0) {
                     posicoes.forEach(posicao => {
-                        document.getElementById(posicao).textContent = letra;
-                    }); // percorre a lista 'posicoes' e, se o seu valor for igual ao ID do elemento '_', substitui o elemento pelo input
+                        document.getElementById(posicao).textContent = letra; // Se algum elemento tiver id = posicao, seu texto será a letra digitada
+                    }); 
                     acertos += posicoes.length; // Adiciona pontos iguais ao número de acertos na variavel acertos
-                    spanLetra.classList.add("letra-usada-verde"); // Classe CSS para estilização
+                    spanLetra.classList.add("letra-usada-verde"); 
                     if (acertos === listar_letras.length) { 
                         document.querySelector("#vitoria").showModal();
                     }
                 } else {
-                    erros++;
-                    spanLetra.classList.add("letra-usada-vermelha"); // Classe CSS para estilização
+                    erros++; // Caso a letra esteja incorreta, 1 ponto será adicionado na variavel erros
+                    spanLetra.classList.add("letra-usada-vermelha");
                     document.getElementById('imagemForca').src = `img/forca${erros}.png`;
                     if (erros >= 6) {
                         document.querySelector("#derrota").showModal();
                     }
-                } // Caso o input não esteja correto, 1 ponto será adicionado na variavel de erros 
+                }  
 
                 letrasUsadasContainer.appendChild(spanLetra);
             }
