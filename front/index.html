@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início</title>
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
-    <script type="text/javascript" src="../js/index.js" defer></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/index.js" defer></script>
 </head>
 <body>
     <header class="menu__wrapper">
         <div class="menu__bar">
-            <a href="http://127.0.0.1:3000/" title="Home" aria-label="home" class="logo" onclick="window.location.reload(true);">
+            <a href="/" title="Home" aria-label="home" class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                     <path d="M6 3h2v2H6zm2 16h3v2H8zm8-16h2v2h-2zm-3 16h3v2h-3zm7-8V9h-2V7h-2V5h-2v2h-4V5H8v2H6v2H4v2H2v8h2v-4h2v4h2v-3h8v3h2v-4h2v4h2v-8zm-10 1H8V9h2zm6 0h-2V9h2z"></path>
                 </svg>
@@ -21,16 +21,14 @@
         <div class="game">
             <div class="img_config">
                 <div class="img">
-                    <img src="img\forca0.png" alt="forca" id="imagemForca">
+                    <img src="/img/forca0.png" alt="Imagem da forca" id="imagemForca">
                 </div>
             </div>
             <div class="info">
-                <div class="lista">
-                    <h2></h2>
-                </div>
+                <div class="lista" id="palavra-container"></div>
                 <div class="inputs">
                     <label>Digite uma letra:</label>
-                    <input type="text" maxlength="1" name="texto" id="texto" oninput="validar(this)" required minlength="1">
+                    <input type="text" maxlength="1" name="texto" id="texto" oninput="this.value = this.value.toLowerCase().replace(/[^a-z]/g, '')" required minlength="1">
                     <button type="button" name="enviar" id="enviar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="m21.426 11.095-17-8A.999.999 0 0 0 3.03 4.242L4.969 12 3.03 19.758a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81zM5.481 18.197l.839-3.357L12 12 6.32 9.16l-.839-3.357L18.651 12l-13.17 6.197z"></path>

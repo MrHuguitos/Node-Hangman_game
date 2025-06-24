@@ -1,11 +1,20 @@
-import "dotenv/config";
-import conectarAoBanco from "../config/dbconfig.js";
+import clientPromise from "../config/dbconfig.js";
 
-const conexao = await conectarAoBanco(process.env.STRING_CONEXAO); // Faz a conexão com o banco
+let db;
+
+async function init() {
+    if (db) return;
+    try {
+        const client = await clientPromise;
+        db = client.db("Hangman-game");
+    } catch (error) {
+        console.error("Falha ao conectar ao banco de dados: ", error);
+        throw new Error("Não foi possível conectar ao banco de dados.");
+    };
+};
 
 export async function getPalavras() {
-    const db = conexao.db("Hangman-game");
+    await init();
     const colecao = db.collection("words");
-
     return colecao.find().toArray(); // Retorna uma lista com todas as palavras
 };

@@ -1,12 +1,9 @@
 import express from "express";
-import path from "path";
-import routes from "./src/routes/gameRoute.js";
+import router from "./src/routes/gameRoute.js";
 
 const app = express();
-app.use(express.static(path.resolve("front")));
 
-app.listen(3000, () => {
-    console.log("server escutando...");
-});
+app.use(express.json());
+app.use("/api", router);
 
-routes(app);
+export default app;
