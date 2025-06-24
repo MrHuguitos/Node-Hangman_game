@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Função que processa jogadas
     function jogar() {
-        if (error >= 6 || acertos === letrasDaPalavra.length) {
+        if (erros >= 6 || acertos === letrasDaPalavra.length) {
             return;
         };
 
