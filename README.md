@@ -4,7 +4,7 @@
 
 > Jogo da forca clássico desenvolvido com uma arquitetura full-stack, utilizando Node.js para o back-end e HTML/CSS/JS no front-end. O estado do jogo é totalmente gerenciado pelo servidor.
 
-[![Acesse a demonstração](httpsa://img.shields.io/badge/Ver%20Deploy-Vercel-black?style=for-the-badge)](https://node-hangman-game.vercel.app/)
+[![Acesse a demonstração](https://img.shields.io/badge/Ver%20Deploy-Vercel-black?style=for-the-badge)](https://node-hangman-game.vercel.app/)
 
 ## 🚀 Sobre o Projeto
 
