@@ -1,6 +1,6 @@
 # 🎮 Jogo da Forca Interativo (Node.js Hangman Game)
 
-![Capa do Projeto](hangman_logo.png)
+![Animação do Jogo da Forca](https://github.com/user-attachments/assets/1c462171-5531-4741-903a-c582a7c51e9c)
 
 > Jogo da forca clássico desenvolvido com uma arquitetura full-stack, utilizando Node.js para o back-end e HTML/CSS/JS no front-end. O estado do jogo é totalmente gerenciado pelo servidor.
 
