@@ -15,6 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const victoryDialog = document.getElementById("vitoria");
     const defeatDialog = document.getElementById("derrota");
 
+    // Fechar o dialog ao clicar fora dele
+    victoryDialog.addEventListener('click', (e) => {
+        if (e.target == victoryDialog) {
+            victoryDialog.close();
+        };
+    });
+    defeatDialog.addEventListener('click', (e) => {
+        if (e.target == defeatDialog) {
+            defeatDialog.close();
+        };
+    });
+
     // Função de carregamento da palavra
     function carregarPalavra() {
         fetch("/api/jogar")
