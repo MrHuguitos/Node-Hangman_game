@@ -201,16 +201,31 @@ dialog::backdrop {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 2px solid #ccc;
+    border: 2px solid #ccc; 
     background-color: transparent;
-    transition: all 0.3s ease-in-out;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; 
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.botao svg {
+    fill: black;
+    transition: fill 0.3s ease-in-out;
+    z-index: 2;
 }
 
 .botao:hover {
     border-color: black;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
 }
 .botao:hover svg {
-    fill: black !important;
+    fill: black;
+    transform: rotate(360deg);
+    transition: transform 0.5s ease-in-out;
 }
 
 .titulo {
