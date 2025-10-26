@@ -48,12 +48,6 @@ body {
     fill: var(--primary);
 }
 
-.hide {
-    color: var(--primary);
-    font-size: 70px;
-    font-family: "Sedan SC", serif;
-}
-
 /* Body */
 .corpo {
     position: absolute;
