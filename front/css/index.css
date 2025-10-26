@@ -91,7 +91,7 @@ img {
 .lista {
     display: flex;
     justify-content: center;
-    font-family: "Sedan SC", serif;
+    font-family: "Poppins", serif;
     font-size: xx-large;
 }
 
@@ -193,6 +193,8 @@ dialog {
 
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .botao {
