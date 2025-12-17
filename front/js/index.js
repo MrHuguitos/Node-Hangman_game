@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputText = document.getElementById("texto");
     const enviarButton = document.getElementById("enviar");
     const letrasUsadasContainer = document.getElementById("letrasUsadasContainer");
+    const sobreButton = document.getElementById("but_info");
+    const sobreDialog = document.getElementById("sobre");
+    const tutorialButton = document.getElementById("but_help");
+    const tutorialDialog = document.getElementById("how_play");
+    const fecharSobre = document.getElementById("fecharSobre");
+    const fecharTutorial = document.getElementById("fecharTutorial");
     const victoryDialog = document.getElementById("vitoria");
     const defeatDialog = document.getElementById("derrota");
 
@@ -25,6 +31,30 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target == defeatDialog) {
             defeatDialog.close();
         };
+    });
+    sobreDialog.addEventListener('click', (e) => {
+        if (e.target == sobreDialog) {
+            sobreDialog.close();
+        };
+    });
+    tutorialDialog.addEventListener('click', (e) => {
+        if (e.target == tutorialDialog) {
+            tutorialDialog.close();
+        };
+    });
+
+    // Função de abrir e fechar o Dialog sobre e tutorial
+    sobreButton.addEventListener('click', () => {
+        sobreDialog.showModal();
+    });
+    fecharSobre.addEventListener('click', () => {
+        sobreDialog.close();
+    });
+    tutorialButton.addEventListener('click', () => {
+        tutorialDialog.showModal();
+    });
+    fecharTutorial.addEventListener('click', () => {
+        tutorialDialog.close();
     });
 
     // Função de carregamento da palavra
