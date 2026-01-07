@@ -187,6 +187,16 @@ button {
     background: #4bff27;
 }
 
+.letra-usada-verde {
+    color: rgb(34, 253, 34); 
+    font-weight: bold;
+}
+
+.letra-usada-vermelha {
+    color: rgb(255, 30, 30); 
+    font-weight: bold;
+}
+
 /* Dialog's */
 #resultado {
     width: 400px;
