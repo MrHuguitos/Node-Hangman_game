@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(palavra => {
                 palavraSecreta = palavra.name.toLowerCase();
-                p.textContent = palavra.name;
+                p.textContent = palavra.name.toUpperCase();
                 letrasDaPalavra = palavraSecreta.split('');
                 desenharPalavra();
             })
