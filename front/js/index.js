@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo.appendChild(h2);
             resultDialog.showModal();
         } else if (erros >= 6) {
-            h2.textContent = "[ GAME OVER ]";
+            h2.textContent = "[ YOU LOSE ]";
             h2.style = "color: rgb(255, 30, 30); font-weight: bold;";
             titulo.appendChild(h2);
             resultDialog.showModal();
