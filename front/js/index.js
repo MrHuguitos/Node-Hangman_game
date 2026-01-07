@@ -12,50 +12,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputText = document.getElementById("texto");
     const enviarButton = document.getElementById("enviar");
     const letrasUsadasContainer = document.getElementById("letrasUsadasContainer");
-    const sobreButton = document.getElementById("but_info");
+    
+    // Dialogs e Modais
     const sobreDialog = document.getElementById("sobre");
-    const tutorialButton = document.getElementById("but_help");
     const tutorialDialog = document.getElementById("how_play");
+    const resultDialog = document.getElementById("resultado");
+
+    // Botões
+    const sobreButton = document.getElementById("but_info");
+    const tutorialButton = document.getElementById("but_help");
     const fecharSobre = document.getElementById("fecharSobre");
     const fecharTutorial = document.getElementById("fecharTutorial");
-    const victoryDialog = document.getElementById("vitoria");
-    const defeatDialog = document.getElementById("derrota");
+
+    // Criação dinâmica de elementos do resultado
+    const palavraRevelada = document.getElementById("text-result");
+    const titulo = document.getElementById("titulo");
+    const p = document.createElement("p");
+    const h2 = document.createElement("h2");
+    
+    p.className = "palavra-exibida";
+    p.style = "font-weight: bold;";
+    palavraRevelada.appendChild(p);
 
     // Fechar o dialog ao clicar fora dele
-    victoryDialog.addEventListener('click', (e) => {
-        if (e.target == victoryDialog) {
-            victoryDialog.close();
-        };
+    resultDialog.addEventListener('click', (e) => {
+        if (e.target == resultDialog) resultDialog.close();
     });
-    defeatDialog.addEventListener('click', (e) => {
-        if (e.target == defeatDialog) {
-            defeatDialog.close();
-        };
-    });
-    sobreDialog.addEventListener('click', (e) => {
-        if (e.target == sobreDialog) {
-            sobreDialog.close();
-        };
-    });
-    tutorialDialog.addEventListener('click', (e) => {
-        if (e.target == tutorialDialog) {
-            tutorialDialog.close();
-        };
-    });
+    if (sobreDialog) {
+        sobreDialog.addEventListener('click', (e) => {
+            if (e.target == sobreDialog) sobreDialog.close();
+        });
+    }
+    if (tutorialDialog) {
+        tutorialDialog.addEventListener('click', (e) => {
+            if (e.target == tutorialDialog) tutorialDialog.close();
+        });
+    }
 
     // Função de abrir e fechar o Dialog sobre e tutorial
-    sobreButton.addEventListener('click', () => {
-        sobreDialog.showModal();
-    });
-    fecharSobre.addEventListener('click', () => {
-        sobreDialog.close();
-    });
-    tutorialButton.addEventListener('click', () => {
-        tutorialDialog.showModal();
-    });
-    fecharTutorial.addEventListener('click', () => {
-        tutorialDialog.close();
-    });
+    if (sobreButton) sobreButton.addEventListener('click', () => sobreDialog.showModal());
+    if (fecharSobre) fecharSobre.addEventListener('click', () => sobreDialog.close());
+    if (tutorialButton) tutorialButton.addEventListener('click', () => tutorialDialog.showModal());
+    if (fecharTutorial) fecharTutorial.addEventListener('click', () => tutorialDialog.close());
 
     // Função de carregamento da palavra
     function carregarPalavra() {
@@ -68,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(palavra => {
                 palavraSecreta = palavra.name.toLowerCase();
+                p.textContent = palavra.name;
                 letrasDaPalavra = palavraSecreta.split('');
                 desenharPalavra();
             })
@@ -108,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         letrasUsadas.push(letra);
         const spanLetra = document.createElement("span");
-        spanLetra.textContent = letra.toUpperCase();
+        spanLetra.textContent = letra.toUpperCase() + " ";
 
         const posicoes = [];
         letrasDaPalavra.forEach((char, index) => {
@@ -127,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Errou a letra
             erros++;
-            imagemForca.src = `/img/forca${erros}.png`;
+            if (imagemForca) imagemForca.src = `/img/forca${erros}.png`;
             spanLetra.classList.add("letra-usada-vermelha");
         };
 
@@ -136,14 +135,21 @@ document.addEventListener("DOMContentLoaded", () => {
         inputText.focus();
 
         if (acertos === letrasDaPalavra.length) {
-            victoryDialog.showModal();
+            h2.textContent = "[ YOU WIN ]";
+            h2.style = "color: rgb(34, 253, 34); font-weight: bold;";
+            titulo.appendChild(h2);
+            resultDialog.showModal();
         } else if (erros >= 6) {
-            defeatDialog.showModal();
+            h2.textContent = "[ GAME OVER ]";
+            h2.style = "color: rgb(255, 30, 30); font-weight: bold;";
+            titulo.appendChild(h2);
+            resultDialog.showModal();
         };
     };
 
     // Acionar função de jogar
     enviarButton.onclick = jogar;
+
     inputText.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();

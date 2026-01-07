@@ -169,16 +169,6 @@ input {
     justify-content: center;
 }
 
-.letra-usada-verde {
-    color: rgb(34, 253, 34);
-    font-weight: bold;
-}
-
-.letra-usada-vermelha {
-    color: rgb(255, 30, 30);
-    font-weight: bold;
-}
-
 button {
     display: flex;
     justify-content: space-evenly;
@@ -198,9 +188,8 @@ button {
 }
 
 /* Dialog's */
-.resultado {
+#resultado {
     width: 400px;
-    height: 200px;
     border-radius: 5px;
     border: none;
     position: fixed;
@@ -224,6 +213,12 @@ dialog::backdrop {
     flex-direction: column;
 }
 
+#text-result {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+}
+
 .botao {
     width: 50px;
     height: 50px;
@@ -237,6 +232,7 @@ dialog::backdrop {
     position: relative;
     overflow: hidden;
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-top: 25px;
 }
 
 .botao svg {
@@ -254,10 +250,9 @@ dialog::backdrop {
     transition: transform 0.5s ease-in-out;
 }
 
-.titulo {
+#titulo {
     text-align: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
+    font-family: 'Press Start 2P', monospace;
 }
 
 /* Sobre & Tutorial */
