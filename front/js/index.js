@@ -91,16 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Validações de input
         if (!letra) {
-            alert("Digite uma letra!");
+            mostrarSnackbar("Digite uma letra!", "aviso");
             return;
         };
         if (letra.length !== 1 || !/^[a-z]$/.test(letra)) {
-            alert("Digite apenas uma letra válida(a-z)!");
+            mostrarSnackbar("Digite uma letra válida (a-z)!", "erro");
             inputText.value = "";
             return;
         };
         if (letrasUsadas.includes(letra)) {
-            alert("Essa letra já foi usada!");
+            mostrarSnackbar("Essa letra já foi usada!", "aviso");
             inputText.value = "";
             return;
         };
@@ -158,4 +158,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     carregarPalavra();
+
+    // Função para mostrar o Snackbar
+    function mostrarSnackbar(mensagem, tipo = 'erro') {
+        const snackbar = document.getElementById("snackbar");
+    
+        snackbar.textContent = mensagem;
+        snackbar.className = ""; 
+        snackbar.classList.add("show", tipo);
+
+        setTimeout(function() {
+            snackbar.className = snackbar.className.replace("show", "");
+        }, 3000);
+    };
 });
